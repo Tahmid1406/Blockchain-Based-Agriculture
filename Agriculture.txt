@@ -1,0 +1,7 @@
+This repo contains the contract to monitor and track agricultural products and process.
+
+
+
+
+
+
