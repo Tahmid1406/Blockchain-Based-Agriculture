@@ -1,6 +1,6 @@
 pragma solidity >=0.4.22 <0.7.0;
 
-contract Agriculture{
+contract Storage{
     
     address owner_address;
     address storage_address = 0x071424020940883EAdBbe98C2b8E5876CF44E218;
@@ -138,6 +138,6 @@ contract Agriculture{
             }
         }
     }
-      
+     
     
 }

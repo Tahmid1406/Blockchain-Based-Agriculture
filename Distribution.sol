@@ -119,7 +119,4 @@ contract Agriculture{
         trace = CurrentTrace.Retail;
     }
     
-    
-    
-    
 }
