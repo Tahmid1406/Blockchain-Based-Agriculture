@@ -2,9 +2,9 @@ pragma solidity >=0.4.22 <0.7.0;
 
 contract Agriculture{
     address owner_address;
-    address producer_address = 0x10C5D227f4240Ba1B168960C7561c2cd1DE1d671;
-    address distributor_address = 0x0EeDCA37Dd9fCdb82922a279395E36b90e2a07b8;
-    address wholeseller_address = 0x324a32E8378175F11Fba15605af24B226b19825C;
+    address producer_address = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    address distributor_address = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db;
+    address wholeseller_address = 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB;
     address retailer_address = 0x5a2E8116e58884EcC159a403EE628f2634C2757f;
     
     
@@ -67,7 +67,7 @@ contract Agriculture{
     }
     
     // constructor and methods
-    constructor() internal{
+    constructor() public{
         owner_address = msg.sender;
     }
     
@@ -76,7 +76,7 @@ contract Agriculture{
         string memory name,
         string memory id,
         uint price,
-        uint quant) internal onlyProuducer{
+        uint quant) public onlyProuducer{
         
         trace = CurrentTrace.Producer;
         initiation_date = block.timestamp;

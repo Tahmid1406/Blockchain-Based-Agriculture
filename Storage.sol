@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.7.0;
 contract Storage{
     
     address owner_address;
-    address storage_address = 0x071424020940883EAdBbe98C2b8E5876CF44E218;
+    address storage_address = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
     
     
     string seedName;
@@ -28,7 +28,7 @@ contract Storage{
     enum ViolationType{None, Temperature, Hummidity, LightExposure}
     ViolationType public violationType;
     
-    constructor() internal{
+    constructor() public{
         owner_address = msg.sender;
         storageDate = block.timestamp;
         tempCOn = TempCondition.Optimum;
@@ -60,7 +60,7 @@ contract Storage{
         uint price,
         uint optTem,
         uint optHum,
-        uint optLitEx) private OnlyOwner{
+        uint optLitEx) public OnlyOwner{
             
         seedName = name;
         batch_id = bat_id;
@@ -72,7 +72,7 @@ contract Storage{
         
     }
     
-    function temperatureSelfCheck(uint value) private OnlyStorage returns(string memory){
+    function temperatureSelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumTemp){
             violationTrigger(ViolationType.Temperature, 1);
             return "Current temperature is over the threshold";
@@ -85,7 +85,7 @@ contract Storage{
         }
     }
     
-    function hummiditySelfCheck(uint value) private OnlyStorage returns(string memory){
+    function hummiditySelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumHum){
             violationTrigger(ViolationType.Hummidity, 1);
             return "Current hummidity is over the threshold";
@@ -98,7 +98,7 @@ contract Storage{
         }
     }
     
-    function lightExpoSelfCheck(uint value) private OnlyStorage returns(string memory){
+    function lightExpoSelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumLightExpo){
             violationTrigger(ViolationType.LightExposure, 1);
             return "Current light exposure is over the threshold";
@@ -112,7 +112,7 @@ contract Storage{
     }
     
     function violationTrigger(ViolationType vio, int category) 
-        private OnlyStorage{ //category 0 = under, 1 = over, 2 optimum 
+        public OnlyStorage{ //category 0 = under, 1 = over, 2 optimum 
         
         if(vio == ViolationType.Temperature){
             if(category == 1){
