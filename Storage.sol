@@ -6,6 +6,7 @@ contract Storage{
     address storage_address = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
     
     
+    // attributes
     string seedName;
     string batch_id;
     uint quantity;
@@ -16,6 +17,7 @@ contract Storage{
     uint storageDate;
     
     
+    // enum for event handling
     enum TempCondition {Optimum, Over, Under}
     TempCondition public tempCOn;
     
@@ -37,6 +39,8 @@ contract Storage{
         violationType = ViolationType.None;
     }
     
+    
+    // modifiers for access control
     modifier OnlyOwner(){
         require(msg.sender == owner_address);
         _;
@@ -53,6 +57,7 @@ contract Storage{
     event LightExposureViolation(address ad, string masg);
     
     
+    // adding seed to the storage
     function addSeed(
         string memory name,
         string memory bat_id,
@@ -72,6 +77,7 @@ contract Storage{
         
     }
     
+    // contract performing self check for temperature
     function temperatureSelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumTemp){
             violationTrigger(ViolationType.Temperature, 1);
@@ -85,6 +91,8 @@ contract Storage{
         }
     }
     
+    
+    // contract performing self check for hummidity
     function hummiditySelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumHum){
             violationTrigger(ViolationType.Hummidity, 1);
@@ -98,6 +106,8 @@ contract Storage{
         }
     }
     
+    
+    // contract performing self check for lightExposure
     function lightExpoSelfCheck(uint value) public OnlyStorage returns(string memory){
         if(value > optimumLightExpo){
             violationTrigger(ViolationType.LightExposure, 1);
@@ -111,6 +121,8 @@ contract Storage{
         }
     }
     
+    
+    // trigerring violation
     function violationTrigger(ViolationType vio, int category) 
         public OnlyStorage{ //category 0 = under, 1 = over, 2 optimum 
         

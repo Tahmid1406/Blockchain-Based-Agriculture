@@ -72,6 +72,8 @@ contract Agriculture{
     }
     
     
+    
+    // distribution starting from producer
     function initiateDistribution(
         string memory name,
         string memory id,
@@ -89,6 +91,8 @@ contract Agriculture{
         
     }
     
+    
+    // distributor information
     function startDistribution(uint dist_quant, uint dist_price) internal onlyDistributor{
         
         dist_start_date = block.timestamp;
@@ -99,6 +103,8 @@ contract Agriculture{
         emit DistributionStart(distributor_address, "Product distribution started");
     }
     
+    
+    // wholesaler information
     function startWholesale(uint whole_price, uint whole_quant) internal onlyWholeseller{
         
         wholesale_start_date = block.timestamp;
@@ -109,6 +115,7 @@ contract Agriculture{
         emit WholesellerStart(wholeseller_address, "Product is with wholeseller now"); 
     }
     
+    // retail sell information
     function retailSell(uint ret_price, uint ret_quant)internal{
         
         retail_start_date = block.timestamp;
